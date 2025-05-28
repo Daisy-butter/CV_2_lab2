@@ -50,6 +50,11 @@ After performing format conversion and directory reorganization, the `coco` dire
 - **Modify the function `coco_classes()` in `mmdetection/mmdet/evaluation/functional/class_names.py`:**
    Update the return values of the `coco_classes()` function to reflect the category names of the VOC dataset.
 
+- If we wish to output proposal box from stage 1, we need to modify corresponding parts in `mmdetection\mmdet\models\detectors\two_stage.py` as shown in the picture below:
+
+![Proposal Boxes](README_images/proposal_box.png)
+
+
 ## Training 🏋️
 
 ## Test 🧪
