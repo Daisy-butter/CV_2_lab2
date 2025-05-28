@@ -79,7 +79,7 @@ After performing format conversion and directory reorganization, the `coco` dire
 - `Validation and Testing Data Loaders`:  
   - These configurations mirror the settings of the `train_dataloader`.  
 
---
+---
 
 #### 📝 Logging Configuration
 - `Default Hooks`:  
@@ -105,10 +105,14 @@ After performing format conversion and directory reorganization, the `coco` dire
 
 #### 📂 Output Directory Configuration
 - `Working Directory`:  
-  - **work_dir='work_dirs_maskrcnn/sparsercnn'**: Sets the working directory for storing results such as model checkpoints, logs, etc.  
+  - **work_dir='work_dirs_maskrcnn/sparsercnn'**: Sets the working directory for storing results such as model checkpoints, logs, etc.
 
-
+---
 
 ## Training 🏋️
+
+We executed the training process on 1 GPU locally. If you're looking for multi-GPU training, you can refer to this [GitHub repository](https://github.com/jia-zhuang/pytorch-multi-gpu-training.git).
+
+
 
 ## Test 🧪
