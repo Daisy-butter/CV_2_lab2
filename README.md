@@ -34,6 +34,14 @@ This repository includes the following files:
 - `PyTorch`: 2.1.0+cu121
 - `CUDA`: 12.9 (local execution)
 
+### Data Processing
+
+To conduct training locally, it is necessary to convert the VOC dataset format to COCO dataset form and reorganize its directory structure.
+
+In this project, we utilized the dataset conversion tool provided by MMDetection (`tools/dataset_converters/pascal_voc.py`) to convert the XML format of VOC2012 into the standard COCO dataset JSON format. Additionally, the script `split_data.py` was used to reorganize the directory and split the dataset into training, validation, and test sets with a ratio of 8:1:1.
+
+After performing format conversion and directory reorganization, the `coco` directory should be placed under `mmdetection/data`. (All subsequent example instructions correspond to this project structure.)
+
 ## Training 🏋️
 
 ## Test 🧪
