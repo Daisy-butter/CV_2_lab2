@@ -12,10 +12,6 @@ The project is designed for research and development purposes and is built with 
 
 ## Implementation ⚙️
 
-The implementation is based on state-of-the-art architectures such as:
-- **YOLOv5** for object detection.
-- **Mask R-CNN** for instance segmentation.
+## Training 🏋️
 
-This repository leverages libraries such as PyTorch and TensorFlow for deep learning model training and inference.
-
-**Key Files and Structure**:
+## Test 🧪
