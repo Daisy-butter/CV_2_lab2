@@ -57,11 +57,11 @@ After performing format conversion and directory reorganization, the `coco` dire
 ### 4. Configurations
 
 #### 📂 Data Loader and Dataset Configuration
-- `**Dataset Type**`:  
+- `Dataset Type`:  
   - **DATASET_TYPE='CocoDataset'**: The dataset type is set to COCO format.  
-- `**Dataset Root Directory**`:  
+- `Dataset Root Directory`:  
   - **DATA_ROOT='data/coco/'**: Root directory of the dataset.  
-- `**Training Data Loader**`:  
+- `Training Data Loader`:  
   - **Batch Size & Workers**:  
     - **batch_size=BATCH_SIZE**: Number of samples per batch.  
     - **num_workers=NUM_WORKERS**: Number of worker threads.  
@@ -76,18 +76,18 @@ After performing format conversion and directory reorganization, the `coco` dire
     - **filter_cfg=dict(filter_empty_gt=True, min_size=32)**: Filters out samples with empty annotations or those smaller than 32 pixels.  
   - **Data Sampler**:  
     - **sampler=dict(shuffle=True, type='DefaultSampler')**: Enables shuffling of data during sampling.  
-- `**Validation and Testing Data Loaders**`:  
+- `Validation and Testing Data Loaders`:  
   - These configurations mirror the settings of the `train_dataloader`.  
 
 ---
 
 #### 📝 Logging Configuration
-- `**Default Hooks**`:  
+- `Default Hooks`:  
   - **Logger**:  
     - **logger=dict(type='LoggerHook', interval=10)**: Records logs every 10 iterations.  
   - **Checkpoint**:  
     - **checkpoint=dict(type='CheckpointHook', interval=1)**: Saves model checkpoints every 1 epoch.  
-- `**Log Processor**`:  
+- `Log Processor`:  
   - **Processing Logs by Epoch**:  
     - **by_epoch=True**: Logs are processed per epoch.  
   - **Log Processor Type**:  
@@ -98,7 +98,7 @@ After performing format conversion and directory reorganization, the `coco` dire
 ---
 
 #### 🎨 Visualization Configuration
-- `**Visualization Backend**`:  
+- `Visualization Backend`:  
   - **vis_backends=dict(type='TensorboardVisBackend')**: Uses TensorBoard for visualization and logging.  
 
 ---
