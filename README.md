@@ -54,6 +54,42 @@ After performing format conversion and directory reorganization, the `coco` dire
 
 ![Proposal Boxes](README_images/proposal_box.png)
 
+### 4. Configurations
+
+#### Data Loader and Dataset Configuration
+- **DATASET_TYPE='CocoDataset'**: The dataset type is set to COCO format.
+- **DATA_ROOT='data/coco/'**: Root directory of the dataset.
+- **Training Data Loader**:
+  - **batch_size=BATCH_SIZE, num_workers=NUM_WORKERS**: Number of samples per batch and number of worker threads.
+  - **Dataset Configuration**:
+    - **ann_file='annotations/instances_train2017.json'**: Path to the training dataset annotation file.
+    - **data_prefix=dict(img='train2017/')**: Prefix path for the training images.
+    - **data_root=DATA_ROOT**: Root directory of the dataset.
+  - **Data Filtering Configuration**:
+    - **filter_cfg=dict(filter_empty_gt=True, min_size=32)**: Filters out samples with empty annotations and those smaller than 32 pixels.
+  - **Data Sampler**:
+    - **sampler=dict(shuffle=True, type='DefaultSampler')**: Enables shuffling of data during sampling.
+- **Validation and Testing Data Loaders**:
+  - Configurations are similar to the training data loader.
+
+#### Logging Configuration
+- **default_hooks**:
+  - **Logger Hook**:
+    - **logger=dict(type='LoggerHook', interval=10)**: Records logs every 10 iterations.
+  - **Checkpoint Hook**:
+    - **checkpoint=dict(type='CheckpointHook', interval=1)**: Saves model checkpoints every 1 epoch.
+- **Log Processor**:
+  - **by_epoch=True**: Processes logs per epoch.
+  - **type='LogProcessor'**: Specifies the type of log processor.
+  - **window_size=50**: Sets the size of the sliding window for log processing.
+
+#### Visualization Configuration
+- Visualization Backend:
+  - **vis_backends=dict(type='TensorboardVisBackend')**: Uses TensorBoard for visualization and logging.
+
+#### Output Directory Configuration
+- **work_dir='work_dirs_maskrcnn/sparsercnn'**: Sets the working directory for storing results such as model checkpoints, logs, etc.
+
 
 ## Training 🏋️
 
