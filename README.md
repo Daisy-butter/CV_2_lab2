@@ -153,6 +153,8 @@ python tools/train.py <CONFIG> [optional arguments]
   Options: `none`, `pytorch`, `slurm`, `mpi`.  
   For single GPU training, use `none`.
 
-
+---
 
 ## Test 🧪
+
+
