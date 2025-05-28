@@ -42,6 +42,14 @@ In this project, we utilized the dataset conversion tool provided by MMDetection
 
 After performing format conversion and directory reorganization, the `coco` directory should be placed under `mmdetection/data`. (All subsequent example instructions correspond to this project structure.)
 
+### Modification
+
+- **Modify the `CocoDataset` in `mmdetection/mmdet/datasets/coco.py`:**
+   Update the `classes` and `palette` attributes in the `CocoDataset` class, replacing the COCO category names and color palette with those corresponding to the VOC dataset.
+
+- **Modify the function `coco_classes()` in `mmdetection/mmdet/evaluation/functional/class_names.py`:**
+   Update the return values of the `coco_classes()` function to reflect the category names of the VOC dataset.
+
 ## Training 🏋️
 
 ## Test 🧪
