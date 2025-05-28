@@ -111,7 +111,48 @@ After performing format conversion and directory reorganization, the `coco` dire
 
 ## Training 🏋️
 
-We executed the training process on 1 GPU locally. If you're looking for multi-GPU training, you can refer to this [GitHub repository](https://github.com/jia-zhuang/pytorch-multi-gpu-training.git).
+We executed the training process on 1 GPU locally and the following content focuses on training on one GPU locally. If you're looking for multi-GPU training, you can refer to this [multi-GPU training](https://github.com/jia-zhuang/pytorch-multi-gpu-training.git).
+
+The `train.py` script is used to launch training tasks(Already given by [MMDetection](https://github.com/open-mmlab/mmdetection)).
+
+```bash
+python tools/train.py <CONFIG> [optional arguments]
+
+### Required Argument
+
+- **`<CONFIG>`**:  
+  Path to the configuration file.  
+  Example: `configs/yolo/yolov3_mobilenetv2_8xb24-ms-416-300e_coco.py`
+
+---
+
+### Optional Arguments
+
+- **`--work-dir <WORK_DIR>`**:  
+  Specifies the working directory for training outputs.  
+  Defaults to the `work_dir` in the configuration file if not provided.
+
+- **`--resume-from <RESUME_FROM>`**:  
+  Resume training from a specified checkpoint.
+
+- **`--no-validate`**:  
+  Disable validation during training.
+
+- **`--gpus <GPUS>`**:  
+  Number of GPUs to be used.  
+  Default: `1`.  
+  Use a higher value for single-machine multi-GPU training.
+
+- **`--seed <SEED>`**:  
+  Set random seed to ensure experiment reproducibility.
+
+- **`--deterministic`**:  
+  Ensure deterministic training by removing all sources of randomness.
+
+- **`--launcher <LAUNCHER>`**:  
+  The method to launch training.  
+  Options: `none`, `pytorch`, `slurm`, `mpi`.  
+  For single GPU training, use `none`.
 
 
 
