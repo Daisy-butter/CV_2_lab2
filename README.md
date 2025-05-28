@@ -54,7 +54,7 @@ After performing format conversion and directory reorganization, the `coco` dire
 
 ![Proposal Boxes](README_images/proposal_box.png)
 
-### Configurations
+### 4. Configurations
 
 #### 📂 Data Loader and Dataset Configuration
 - **Dataset Type**:  
