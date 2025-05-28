@@ -123,9 +123,7 @@ python tools/train.py <CONFIG> [optional arguments]
 
 - **`<CONFIG>`**:  
   Path to the configuration file.  
-  Example: `configs/yolo/yolov3_mobilenetv2_8xb24-ms-416-300e_coco.py`
-
----
+  Example: `configs/experiments/mask-rcnn_r50_fpn_ms-poly-2x_voc.py`
 
 ### Optional Arguments
 
