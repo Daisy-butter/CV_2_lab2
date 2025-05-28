@@ -1,4 +1,8 @@
-# Object Detection and Instance Segmentation 🚀
+# Object Detection and Instance Segmentation
+
+**Ruihan Wu**  
+Fudan University  
+Email: [22307140084@m.fudan.edu.cn](mailto:22307140084@m.fudan.edu.cn)
 
 ## Overview 🗂
 
