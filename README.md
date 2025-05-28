@@ -27,14 +27,14 @@ This repository includes the following files:
 
 ## Implementation ⚙️
 
-### Version Information
+### 1. Version Information
 - `Python`: 3.9.21
 - `MMDetection`: 3.3.0
 - `MMCV`: 2.1.0
 - `PyTorch`: 2.1.0+cu121
 - `CUDA`: 12.9 (local execution)
 
-### Data Processing
+### 2. Data Processing
 
 To conduct training locally, it is necessary to convert the VOC dataset format to COCO dataset form and reorganize its directory structure.
 
@@ -42,7 +42,7 @@ In this project, we utilized the dataset conversion tool provided by MMDetection
 
 After performing format conversion and directory reorganization, the `coco` directory should be placed under `mmdetection/data`. (All subsequent example instructions correspond to this project structure.)
 
-### Modification
+### 3. Modification
 
 - **Modify the `CocoDataset` in `mmdetection/mmdet/datasets/coco.py`:**
    Update the `classes` and `palette` attributes in the `CocoDataset` class, replacing the COCO category names and color palette with those corresponding to the VOC dataset.
