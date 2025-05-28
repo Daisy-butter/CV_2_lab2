@@ -9,9 +9,9 @@ Email: [22307140084@m.fudan.edu.cn](mailto:22307140084@m.fudan.edu.cn)
 
 ## Overview 🗂
 
-This repository aims to implement **object detection** and **instance segmentation** tasks using models from the [MMDetection](https://github.com/open-mmlab/mmdetection) framework, specifically focusing on **Mask R-CNN** and **Sparse R-CNN**. 🛠
+This repository aims to implement **object detection** and **instance segmentation** tasks using models from the [MMDetection](https://github.com/open-mmlab/mmdetection) framework, specifically focusing on **Mask R-CNN** and **Sparse R-CNN**. 🛠 And the project is designed to utilize the **Pascal VOC 2007** dataset as the benchmark for training and evaluation. 
 
-The project is designed to utilize the **Pascal VOC 2007** dataset as the benchmark for training and evaluation. It contains:
+The repo contains:
 1. **Modified Code Files** from the MMDetection framework, tailored for this project.
 2. **Custom Scripts** added for enhanced functionalities.
 
