@@ -23,13 +23,16 @@ This repository includes the following files:
   - **Link**: [https://pan.baidu.com/s/1_TR6pxyXcq4oo3VLtJxxTQ](https://pan.baidu.com/s/1_TR6pxyXcq4oo3VLtJxxTQ)
   - **Password**: `txkp`
 
-
-
-Stay tuned for results and findings! 🚀
-
 ---
 
 ## Implementation ⚙️
+
+### Version Information
+- Python: 3.9.21
+- MMDetection: 3.3.0
+- MMCV: 2.1.0
+- PyTorch: 2.1.0+cu121
+- CUDA: 12.9 (local execution)
 
 ## Training 🏋️
 
