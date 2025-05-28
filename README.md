@@ -79,7 +79,7 @@ After performing format conversion and directory reorganization, the `coco` dire
 - `Validation and Testing Data Loaders`:  
   - These configurations mirror the settings of the `train_dataloader`.  
 
----
+--
 
 #### 📝 Logging Configuration
 - `Default Hooks`:  
@@ -104,7 +104,7 @@ After performing format conversion and directory reorganization, the `coco` dire
 ---
 
 #### 📂 Output Directory Configuration
-- `**Working Directory**`:  
+- `Working Directory`:  
   - **work_dir='work_dirs_maskrcnn/sparsercnn'**: Sets the working directory for storing results such as model checkpoints, logs, etc.  
 
 
