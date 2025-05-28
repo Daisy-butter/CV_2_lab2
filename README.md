@@ -28,11 +28,11 @@ This repository includes the following files:
 ## Implementation ⚙️
 
 ### Version Information
-- 'Python': 3.9.21
-- 'MMDetection': 3.3.0
-- 'MMCV': 2.1.0
-- 'PyTorch': 2.1.0+cu121
-- 'CUDA': 12.9 (local execution)
+- `Python`: 3.9.21
+- `MMDetection`: 3.3.0
+- `MMCV`: 2.1.0
+- `PyTorch`: 2.1.0+cu121
+- `CUDA`: 12.9 (local execution)
 
 ## Training 🏋️
 
