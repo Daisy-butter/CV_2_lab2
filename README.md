@@ -111,12 +111,13 @@ After performing format conversion and directory reorganization, the `coco` dire
 
 ## Training 🏋️
 
-We executed the training process on 1 GPU locally and the following content focuses on training on one GPU locally. If you're looking for multi-GPU training, you can refer to this [multi-GPU training](https://github.com/jia-zhuang/pytorch-multi-gpu-training.git).
+We executed the training process on 1 GPU locally and the following content focuses on training on one GPU locally. If you're looking for multi-GPU training, you can refer to [multi-GPU training](https://github.com/jia-zhuang/pytorch-multi-gpu-training.git).
 
 The `train.py` script is used to launch training tasks(Already given by [MMDetection](https://github.com/open-mmlab/mmdetection)).
 
 ```bash
 python tools/train.py <CONFIG> [optional arguments]
+```
 
 ### Required Argument
 
