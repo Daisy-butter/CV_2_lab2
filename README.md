@@ -158,3 +158,65 @@ python tools/train.py <CONFIG> [optional arguments]
 ## Test 🧪
 
 
+The `test.py` script is used to evaluate a trained model in either a single-GPU or multi-GPU environment.
+
+```bash
+python tools/test.py <CONFIG> <CHECKPOINT> [optional arguments]
+```
+
+### Parameters Explanation
+
+- **`<CONFIG>`**:  
+  Path to the configuration file.  
+  Example: `configs/yolo/yolov3_mobilenetv2_8xb24-ms-416-300e_coco.py`
+
+- **`<CHECKPOINT>`**:  
+  Path to the checkpoint file of the trained model.  
+  Example: `work_dirs/yolov3_mobilenetv2_custom/latest.pth`
+
+---
+
+### Optional Arguments
+
+- **`--out <OUT>`**:  
+  Save the test results to the specified file.  
+  Example: `--out results.pkl`
+
+- **`--eval <EVAL>`**:  
+  Evaluation metrics such as `bbox` or `segm`.  
+  Multiple metrics can be separated by commas.  
+  Example: `--eval bbox,segm`
+
+- **`--gpu-ids <GPU_IDS>`**:  
+  Specify the GPU IDs to use.  
+  Example: `--gpu-ids 0`
+
+- **`--show`**:  
+  Visualize the test results (e.g., draw detection boxes on the image).
+
+- **`--show-dir <SHOW_DIR>`**:  
+  Save the visualized results to the specified directory.
+
+- **`--cfg-options`**:  
+  Modify configuration items in the config file as key-value pairs.
+
+- **`--launcher <LAUNCHER>`**:  
+  The method to launch evaluation.  
+  Options: `none`, `pytorch`, `slurm`, `mpi`.  
+  For single-GPU evaluation, use `none`.
+
+- **`--local_rank <LOCAL_RANK>`**:  
+  Local process rank for multi-GPU testing.  
+  This usually does not need to be manually set.
+
+---
+
+## Single-image Inference
+
+The `image_demo.py` script is used for inference and visualization on a single image.
+
+```bash
+python demo/image_demo.py <IMAGE_PATH> <CONFIG> <CHECKPOINT> [optional arguments]
+```
+
+Parameters and optional arguments are the same as above.
