@@ -19,6 +19,7 @@ This repository implements **object detection** and **instance segmentation** us
 - `class_names.py`, `coco.py`, `two_stage.py`: Modified MMDetection components for VOC categories
 
 🔗 **Resources (Baidu Cloud):**  
+Processed Pascal VOC dataset, training model weights, and visualization results can be downloaded via the following Baidu Cloud link.
 [Download Link](https://pan.baidu.com/s/1_TR6pxyXcq4oo3VLtJxxTQ) | **Password:** `txkp`
 
 ---
@@ -160,12 +161,6 @@ python demo/image_demo.py <IMAGE_PATH> <CONFIG> <CHECKPOINT> [options]
 ```
 
 Options are similar to the test script.
-
----
-
-## ✅ License
-
-This project is for educational and research purposes.
 
 ---
 
