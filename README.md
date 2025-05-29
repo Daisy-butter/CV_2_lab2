@@ -21,7 +21,7 @@ This repository implements **object detection** and **instance segmentation** us
 🔗 **Resources (Baidu Cloud):**  
 Processed Pascal VOC dataset, training model weights, and visualization results can be downloaded via the following Baidu Cloud link.
 
-[Download Link](https://pan.baidu.com/s/1_TR6pxyXcq4oo3VLtJxxTQ) | **Password:** `txkp`
+[Download Link](https://pan.baidu.com/s/1napdHewzDzCgoMz3b_7kMg?pwd=di9q) | **Password:** `di9q`
 
 ---
 
