@@ -1,222 +1,176 @@
-# Object Detection and Instance Segmentation
+# 🧠 Object Detection and Instance Segmentation
 
-**Ruihan Wu**  
-Fudan University  
-Email: [22307140084@m.fudan.edu.cn](mailto:22307140084@m.fudan.edu.cn)
-
----
-
-
-## Overview 🗂
-
-This repository aims to implement **object detection** and **instance segmentation** tasks using models from the [MMDetection](https://github.com/open-mmlab/mmdetection) framework, specifically focusing on **Mask R-CNN** and **Sparse R-CNN**. 🛠 The project uses **Pascal VOC 2007** dataset as the benchmark for training and evaluation. 
-
-This repository includes the following files:
-
-- `mask-rcnn_r50_fpn_ms-poly-2x_voc.py`: Configuration file used for the **Mask R-CNN** model.
-- `sparse-rcnn_r50_fpn_1x_voc.py`: Configuration file used for the **Sparse R-CNN** model.
-- `split.py`: Script for splitting the dataset.
-- `visualize_rpn_vs_final.py`: A script for visualizing the proposal boxes (from the RPN) and the final results of the **Mask R-CNN** model.
-- `class_names.py`, `coco.py`, `two_stage.py`: Adaptations of MMDetection framework files to work with the Pascal VOC dataset and its specific categories.
-
-- Processed Pascal VOC dataset, training model weights, and visualization results can be downloaded via the following Baidu Cloud link:
-  - **Link**: [https://pan.baidu.com/s/1_TR6pxyXcq4oo3VLtJxxTQ](https://pan.baidu.com/s/1_TR6pxyXcq4oo3VLtJxxTQ)
-  - **Password**: `txkp`
+**Author:** Ruihan Wu  
+**Affiliation:** Fudan University  
+📧 [22307140084@m.fudan.edu.cn](mailto:22307140084@m.fudan.edu.cn)
 
 ---
 
-## Implementation ⚙️
+## 📌 Overview
 
-### 1. Version Information
-- `Python`: 3.9.21
-- `MMDetection`: 3.3.0
-- `MMCV`: 2.1.0
-- `PyTorch`: 2.1.0+cu121
-- `CUDA`: 12.9 (local execution)
+This repository implements **object detection** and **instance segmentation** using the [MMDetection](https://github.com/open-mmlab/mmdetection) framework. Models used include **Mask R-CNN** and **Sparse R-CNN**, evaluated on the **Pascal VOC 2007** dataset.
 
-### 2. Data Processing
+### 📁 Contents
 
-To conduct training locally, it is necessary to convert the VOC dataset format to COCO dataset form and reorganize its directory structure.
+- `mask-rcnn_r50_fpn_ms-poly-2x_voc.py`: Mask R-CNN configuration file
+- `sparse-rcnn_r50_fpn_1x_voc.py`: Sparse R-CNN configuration file
+- `split.py`: Dataset splitting script
+- `visualize_rpn_vs_final.py`: Visualize RPN proposals vs final detections
+- `class_names.py`, `coco.py`, `two_stage.py`: Modified MMDetection components for VOC categories
 
-In this project, we utilized the dataset conversion tool provided by MMDetection (`tools/dataset_converters/pascal_voc.py`) to convert the XML format of VOC2012 into the standard COCO dataset JSON format. Additionally, the script `split_data.py` was used to reorganize the directory and split the dataset into training, validation, and test sets with a ratio of 8:1:1.
+🔗 **Resources (Baidu Cloud):**  
+[Download Link](https://pan.baidu.com/s/1_TR6pxyXcq4oo3VLtJxxTQ) | **Password:** `txkp`
 
-After performing format conversion and directory reorganization, the `coco` directory should be placed under `mmdetection/data`. (All subsequent example instructions correspond to this project structure.)
+---
 
-### 3. Modification
+## ⚙️ Implementation Details
 
-- **Modify the `CocoDataset` in `mmdetection/mmdet/datasets/coco.py`:**
-   Update the `classes` and `palette` attributes in the `CocoDataset` class, replacing the COCO category names and color palette with those corresponding to the VOC dataset.
+### 1. 📦 Environment
 
-- **Modify the function `coco_classes()` in `mmdetection/mmdet/evaluation/functional/class_names.py`:**
-   Update the return values of the `coco_classes()` function to reflect the category names of the VOC dataset.
+- Python: `3.9.21`
+- MMDetection: `3.3.0`
+- MMCV: `2.1.0`
+- PyTorch: `2.1.0+cu121`
+- CUDA: `12.9`
 
-- If we wish to output proposal box from stage 1, we need to modify corresponding parts in `mmdetection\mmdet\models\detectors\two_stage.py` as shown in the picture below:
+### 2. 📊 Data Processing
+
+- Convert VOC XML to COCO JSON using `tools/dataset_converters/pascal_voc.py`
+- Reorganize directory and split using `split_data.py` (train:val:test = 8:1:1)
+- Final dataset path: `mmdetection/data/coco`
+
+### 3. 🛠 Custom Modifications
+
+- **`coco.py`**: Update `CocoDataset` class with VOC class names & palette
+- **`class_names.py`**: Update `coco_classes()` with VOC class list
+- **`two_stage.py`**: Modify to extract stage 1 RPN proposals
 
 ![Proposal Boxes](README_images/proposal_box.png)
 
-### 4. Configurations
+### 4. ⚙️ Configuration Snippets
 
-#### 📂 Data Loader and Dataset Configuration
-- `Dataset Type`:  
-  - **DATASET_TYPE='CocoDataset'**: The dataset type is set to COCO format.  
-- `Dataset Root Directory`:  
-  - **DATA_ROOT='data/coco/'**: Root directory of the dataset.  
-- `Training Data Loader`:  
-  - **Batch Size & Workers**:  
-    - **batch_size=BATCH_SIZE**: Number of samples per batch.  
-    - **num_workers=NUM_WORKERS**: Number of worker threads.  
-  - **Dataset Configuration**:  
-    - **Annotation File**:  
-      - **ann_file='annotations/instances_train2017.json'**: Path to the training dataset annotation file.  
-    - **Image Prefix**:  
-      - **data_prefix=dict(img='train2017/')**: Prefix path for the training images.  
-    - **Root Directory**:  
-      - **data_root=DATA_ROOT**: Root directory of the dataset.  
-  - **Data Filtering**:  
-    - **filter_cfg=dict(filter_empty_gt=True, min_size=32)**: Filters out samples with empty annotations or those smaller than 32 pixels.  
-  - **Data Sampler**:  
-    - **sampler=dict(shuffle=True, type='DefaultSampler')**: Enables shuffling of data during sampling.  
-- `Validation and Testing Data Loaders`:  
-  - These configurations mirror the settings of the `train_dataloader`.  
+#### 🧾 Dataset Loader
 
----
+```python
+DATASET_TYPE = 'CocoDataset'
+DATA_ROOT = 'data/coco/'
 
-#### 📝 Logging Configuration
-- `Default Hooks`:  
-  - **Logger**:  
-    - **logger=dict(type='LoggerHook', interval=10)**: Records logs every 10 iterations.  
-  - **Checkpoint**:  
-    - **checkpoint=dict(type='CheckpointHook', interval=1)**: Saves model checkpoints every 1 epoch.  
-- `Log Processor`:  
-  - **Processing Logs by Epoch**:  
-    - **by_epoch=True**: Logs are processed per epoch.  
-  - **Log Processor Type**:  
-    - **type='LogProcessor'**: Defines the type of log processor.  
-  - **Sliding Window Size**:  
-    - **window_size=50**: Sets the size of the sliding window for log processing.  
-
----
-
-#### 🎨 Visualization Configuration
-- `Visualization Backend`:  
-  - **vis_backends=dict(type='TensorboardVisBackend')**: Uses TensorBoard for visualization and logging.  
-
----
-
-#### 📂 Output Directory Configuration
-- `Working Directory`:  
-  - **work_dir='work_dirs_maskrcnn/sparsercnn'**: Sets the working directory for storing results such as model checkpoints, logs, etc.
-
----
-
-## Training 🏋️
-
-We executed the training process on 1 GPU locally and the following content focuses on training on one GPU locally. If you're looking for multi-GPU training, you can refer to [multi-GPU training](https://github.com/jia-zhuang/pytorch-multi-gpu-training.git).
-
-The `train.py` script is used to launch training tasks(Already given by [MMDetection](https://github.com/open-mmlab/mmdetection)).
-
-```bash
-python tools/train.py <CONFIG> [optional arguments]
+train_dataloader = dict(
+    batch_size = BATCH_SIZE,
+    num_workers = NUM_WORKERS,
+    dataset = dict(
+        type = DATASET_TYPE,
+        ann_file = 'annotations/instances_train2017.json',
+        data_prefix = dict(img='train2017/'),
+        data_root = DATA_ROOT,
+        filter_cfg = dict(filter_empty_gt=True, min_size=32)
+    ),
+    sampler = dict(type='DefaultSampler', shuffle=True)
+)
 ```
 
-### Required Argument
+#### 🗒️ Logging
 
-- **`<CONFIG>`**:  
-  Path to the configuration file.  
-  Example: `configs/experiments/mask-rcnn_r50_fpn_ms-poly-2x_voc.py`
-
-### Optional Arguments
-
-- **`--work-dir <WORK_DIR>`**:  
-  Specifies the working directory for training outputs.  
-  Defaults to the `work_dir` in the configuration file if not provided.
-
-- **`--resume-from <RESUME_FROM>`**:  
-  Resume training from a specified checkpoint.
-
-- **`--no-validate`**:  
-  Disable validation during training.
-
-- **`--gpus <GPUS>`**:  
-  Number of GPUs to be used.  
-  Default: `1`.  
-  Use a higher value for single-machine multi-GPU training.
-
-- **`--seed <SEED>`**:  
-  Set random seed to ensure experiment reproducibility.
-
-- **`--deterministic`**:  
-  Ensure deterministic training by removing all sources of randomness.
-
-- **`--launcher <LAUNCHER>`**:  
-  The method to launch training.  
-  Options: `none`, `pytorch`, `slurm`, `mpi`.  
-  For single GPU training, use `none`.
-
----
-
-## Test 🧪
-
-
-The `test.py` script is used to evaluate a trained model in either a single-GPU or multi-GPU environment.
-
-```bash
-python tools/test.py <CONFIG> <CHECKPOINT> [optional arguments]
+```python
+default_hooks = dict(
+    logger = dict(type='LoggerHook', interval=10),
+    checkpoint = dict(type='CheckpointHook', interval=1)
+)
+log_processor = dict(
+    type = 'LogProcessor',
+    by_epoch = True,
+    window_size = 50
+)
 ```
 
-### Parameters Explanation
+#### 📈 Visualization
 
-- **`<CONFIG>`**:  
-  Path to the configuration file.  
-  Example: `configs/yolo/yolov3_mobilenetv2_8xb24-ms-416-300e_coco.py`
-
-- **`<CHECKPOINT>`**:  
-  Path to the checkpoint file of the trained model.  
-  Example: `work_dirs/yolov3_mobilenetv2_custom/latest.pth`
-
----
-
-### Optional Arguments
-
-- **`--out <OUT>`**:  
-  Save the test results to the specified file.  
-  Example: `--out results.pkl`
-
-- **`--eval <EVAL>`**:  
-  Evaluation metrics such as `bbox` or `segm`.  
-  Multiple metrics can be separated by commas.  
-  Example: `--eval bbox,segm`
-
-- **`--gpu-ids <GPU_IDS>`**:  
-  Specify the GPU IDs to use.  
-  Example: `--gpu-ids 0`
-
-- **`--show`**:  
-  Visualize the test results (e.g., draw detection boxes on the image).
-
-- **`--show-dir <SHOW_DIR>`**:  
-  Save the visualized results to the specified directory.
-
-- **`--cfg-options`**:  
-  Modify configuration items in the config file as key-value pairs.
-
-- **`--launcher <LAUNCHER>`**:  
-  The method to launch evaluation.  
-  Options: `none`, `pytorch`, `slurm`, `mpi`.  
-  For single-GPU evaluation, use `none`.
-
-- **`--local_rank <LOCAL_RANK>`**:  
-  Local process rank for multi-GPU testing.  
-  This usually does not need to be manually set.
-
----
-
-## Single-image Inference
-
-The `image_demo.py` script is used for inference and visualization on a single image.
-
-```bash
-python demo/image_demo.py <IMAGE_PATH> <CONFIG> <CHECKPOINT> [optional arguments]
+```python
+visualizer = dict(
+    vis_backends = [dict(type='TensorboardVisBackend')]
+)
 ```
 
-Parameters and optional arguments are the same as above.
+#### 📂 Output Directory
+
+```python
+work_dir = 'work_dirs_maskrcnn/sparsercnn'
+```
+
+---
+
+## 🏋️‍♀️ Training
+
+Run local training using:
+
+```bash
+python tools/train.py <CONFIG> [options]
+```
+
+### Arguments
+
+- `<CONFIG>`: Path to config file  
+  e.g., `configs/experiments/mask-rcnn_r50_fpn_ms-poly-2x_voc.py`
+
+#### Optional
+
+- `--work-dir`: Custom working directory
+- `--resume-from`: Resume from a checkpoint
+- `--no-validate`: Skip validation
+- `--gpus`: Number of GPUs (default: 1)
+- `--seed`: Random seed for reproducibility
+- `--deterministic`: Enforce deterministic behavior
+- `--launcher`: Launch method (`none`, `pytorch`, `slurm`, `mpi`)
+
+Multi-GPU support: [pytorch-multi-gpu-training](https://github.com/jia-zhuang/pytorch-multi-gpu-training.git)
+
+---
+
+## 🧪 Testing
+
+Evaluate a trained model using:
+
+```bash
+python tools/test.py <CONFIG> <CHECKPOINT> [options]
+```
+
+### Required
+
+- `<CONFIG>`: Configuration file path  
+- `<CHECKPOINT>`: Trained model checkpoint
+
+#### Optional
+
+- `--out`: Output file for results (e.g., `results.pkl`)
+- `--eval`: Evaluation metrics (`bbox`, `segm`, etc.)
+- `--gpu-ids`: GPU ID(s)
+- `--show`: Visualize results
+- `--show-dir`: Output directory for visualizations
+- `--cfg-options`: Override config options
+- `--launcher`, `--local_rank`: Distributed config
+
+---
+
+## 🖼️ Single-image Inference
+
+Perform inference on a single image with:
+
+```bash
+python demo/image_demo.py <IMAGE_PATH> <CONFIG> <CHECKPOINT> [options]
+```
+
+Options are similar to the test script.
+
+---
+
+## ✅ License
+
+This project is for educational and research purposes.
+
+---
+
+## 🙏 Acknowledgements
+
+- [MMDetection](https://github.com/open-mmlab/mmdetection)
+- [COCO Dataset](https://cocodataset.org/#home)
+- [Pascal VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
